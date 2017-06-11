@@ -9,7 +9,7 @@ import { ManagePostsComponent } from '../manage-posts/manage-posts.component';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
-    {path: '', component: BlogComponent, canActivateChild: [AuthGuard], children: [
+    {path: '', component: BlogComponent, children: [
         {path: 'manage-categories', component: ManageCategoriesComponent},
         {path: 'manage-subcategories', component: ManageSubcategoriesComponent},
         {path: 'manage-posts', component: ManagePostsComponent},

@@ -6,7 +6,7 @@
     <div class="card-block">
       <small class="text-muted">Published On: {{post.datePublished | date}}</small>
       <!--<markdown-to-html [data]="post.bodymd"></markdown-to-html>-->
-      <div [MathJax]="post.bodymd | sanitizeHtml"></div>
+      <div [MathJax]="post.bodymd"></div>
     </div>
   </div>
 </div>

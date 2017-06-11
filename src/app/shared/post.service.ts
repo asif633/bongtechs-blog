@@ -49,13 +49,17 @@ export class PostService {
     }
 
     getPosts(pageNum: number): Observable<Post[]> {
-        return this.afd.list('blog-posts');
+        return this.afd.list('blog-posts', {
+            query: {
+                limitToFirst: (pageNum * 10)
+                }
+        });
     }
 
     getCategoryPosts(catKey: string, pageNum: number): Observable<Post[]> {
             return this.afd.list('blog-cat-posts/' + catKey, {
                 query: {
-                limitToFirst: (pageNum * 4)
+                limitToFirst: (pageNum * 10)
                 }
             })
                 .map(res => res.map(res => res.$key))
@@ -81,7 +85,7 @@ export class PostService {
             return catKeysObs.
             switchMap(catkey => this.afd.list('blog-subcat-posts/' + catkey, {
                 query: {
-                limitToFirst: (pageNum * 4)
+                limitToFirst: (pageNum * 10)
                 }
             }))
                 .map(res => res.map(res => res.$key))

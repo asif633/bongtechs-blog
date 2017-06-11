@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Post } from '../shared/post.model';
 import { PostService } from '../shared/post.service';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-post-table',
@@ -13,9 +14,12 @@ export class PostTableComponent implements OnInit {
   posts: Observable<Post[]>;
 
   constructor(private prodServ: PostService) { }
+  
+  p: number;
 
   ngOnInit() {
-    this.posts = this.prodServ.getPosts(1);
+    this.p = 1;
+    this.posts = this.prodServ.getUserPosts(this.p);
   }
 
   @Output() selectPost = new EventEmitter<Post>();
@@ -29,6 +33,11 @@ export class PostTableComponent implements OnInit {
   initializeNew() {
     this.selectPost.emit(this.prodServ.initializeNew());
     this.add.emit(true);
+  }
+
+  changePage(event) {
+    this.p = event;
+    this.posts = this.prodServ.getUserPosts(this.p);
   }
 
 }

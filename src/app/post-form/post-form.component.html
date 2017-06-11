@@ -39,20 +39,45 @@
             <option *ngFor="let cat of subcategories | async" [ngValue]="cat">{{cat.name}}</option>
           </select>
         </div>
-        <!--<div class="row">
+        <label class="custom-control custom-radio">
+          <input id="radio1" name="doctype" value="html" type="radio" [(ngModel)]="doctype" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">HTML Body</span>
+        </label>
+        <label class="custom-control custom-radio">
+          <input id="radio2" name="doctype" type="radio" value="equation" [(ngModel)]="doctype" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">HTML Body With Equations</span>
+        </label>
+        <label class="custom-control custom-radio">
+          <input id="radio2" name="doctype" type="radio" value="markdown" [(ngModel)]="doctype" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Markdown Body</span>
+        </label>
+        <div class="row" *ngIf="doctype == 'markdown'">
           <div class="form-group col-md-6">
             <label for="bodymb">Post Markdown Body</label>
             <textarea rows="200" class="form-control" id="bodymd" placeholder="Enter markdown" [(ngModel)]="post.bodymd" name="bodymd"></textarea>
           </div>
           <markdown-to-html class="col-md-6" [data]="post.bodymd"></markdown-to-html>
-        </div>-->
-        <div class="row">
+        </div>
+        <div class="row" *ngIf="doctype == 'equation'">
           <div class="form-group col-md-6">
             <label for="bodymb">Post Body</label>
-            <ckeditor name="bodymd" [(ngModel)]="post.bodymd" [config]="{uiColor: '#ffffff', extraPlugins: 'mathjax', mathJaxLib: '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML'}" debounce="500">
+            <ckeditor name="bodymd" [(ngModel)]="post.bodymd" [config]="{uiColor: '#ffffff', extraPlugins: 'mathjax', mathJaxLib: '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML'}"
+              debounce="500">
             </ckeditor>
           </div>
-          <div class="col-md-6" [MathJax]="post.bodymd | sanitizeHtml"></div>
+          <div class="col-md-6" [MathJax]="post.bodymd"></div>
+        </div>
+        <div class="row" *ngIf="doctype == 'html'">
+          <div class="form-group col-md-6">
+            <label for="bodymb">Post Body</label>
+            <ckeditor name="bodymd" [(ngModel)]="post.bodymd" [config]="{uiColor: '#ffffff'}"
+              debounce="500">
+            </ckeditor>
+          </div>
+          <div class="col-md-6" [MathJax]="post.bodymd"></div>
         </div>
         <div *ngIf="addPost==false">
           <button type="submit" class="btn btn-primary" (click)="updatePost()">Update</button>

@@ -8,14 +8,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cat of posts | async; let i = index;">
+    <tr *ngFor="let cat of posts | async | paginate: { itemsPerPage: 1, currentPage: p }; let i = index;">
       <td>{{i+1}}</td>
       <td>{{cat.title}}</td>
-      <td *ngIf="cat.subcategories"><div *ngFor="let sub of cat.subcategories">{{sub.name}}, </div></td>
+      <td *ngIf="cat.subcategories">
+        <div *ngFor="let sub of cat.subcategories">{{sub.name}}, </div>
+      </td>
       <td>
         <input type="radio" name="optionsRadios" id="optionsRadios1" value="case" (click)="selectedPost(cat)">
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <td class="text-right" colspan="4">
+        <pagination-controls directionLinks="true" autoHide="true" previousLabel="Previous" nextLabel="Next" (pageChange)="changePage($event)"></pagination-controls>
+      </td>
+    </tr>
+  </tfoot>
 </table>
 <button class="btn btn-primary" (click)="initializeNew()">Add New Post</button>
