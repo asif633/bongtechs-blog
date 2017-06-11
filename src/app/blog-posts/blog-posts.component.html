@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-header">Filter Blogs</div>
+        <div class="card-block">
+          <h6>Select Category</h6>
+          <div class="form-group">
+            <select required class="form-control" id="exampleSelect1" name="category" [ngModel]="category" (ngModelChange)="catChange($event)">
+            <option default>Select One</option>
+            <option *ngFor="let cat of categories | async" [ngValue]="cat">{{cat.name}}</option>
+          </select>
+          </div>
+          <div *ngIf="options">
+            <h6 class="mb-3"> Select to Filter </h6>
+            <div class="form-group">
+              <label class="custom-control custom-checkbox" *ngFor="let option of options">
+              <input class="custom-control-input" type="checkbox" [attr.name]="options" [value]="option.$key" (change)="updateChecked(option.$key, $event)">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{option.name}}</span>
+            </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-right">
+            <pagination-controls directionLinks="true" autoHide="true" previousLabel="Previous" nextLabel="Next" (pageChange)="changePage($event)"></pagination-controls>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card mb-4" *ngFor="let post of posts | async | paginate: { itemsPerPage: 2, currentPage: p } ">
+            <div class="card-block">
+              <h3>{{post.title}}</h3>
+              <small class="text-muted">{{post.datePublished | date}}</small>
+              <p>{{post.summary}}</p>
+              <button class="btn btn-warning float-right" (click)="readPost(post.slug)">Read More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

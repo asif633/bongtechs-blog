@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-md-6">
+    <app-category-table (selectCategory)="getCategory($event)" (add)="getAdd($event)"></app-category-table>
+  </div>
+  <div class="col-md-6">
+    <app-category-form [addCategory]="add" [category]="selectedCategory"></app-category-form>
+  </div>
+</div>

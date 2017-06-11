@@ -1,0 +1,22 @@
+<div class="card" *ngIf="category">
+  <h3 class="card-header">Category Form</h3>
+  <div class="card-block">
+    <form>
+      <fieldset>
+        <div class="form-group">
+          <label for="name">Category Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter Category Name" [(ngModel)]="category.name" name="name">
+        </div>
+        <div *ngIf="addCategory==false">
+          <button type="submit" class="btn btn-primary" (click)="updateCategory()">Update</button>
+          <button type="submit" class="btn btn-danger" (click)="deleteCategory()">Delete</button>
+        </div>
+        <div *ngIf="addCategory==true">
+          <button type="submit" class="btn btn-primary" (click)="addNew()">Add</button>
+        </div>
+      </fieldset>
+    </form>
+    <p *ngIf="msg" class="text-success">{{msg}}</p>
+    <p *ngIf="msg1" class="text-danger">{{msg1}}</p>
+  </div>
+</div>

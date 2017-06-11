@@ -1,0 +1,67 @@
+<div class="card" *ngIf="post">
+  <h3 class="card-header">Post Form</h3>
+  <div class="card-block">
+    <form>
+      <fieldset>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter Title" [(ngModel)]="post.title" name="title">
+        </div>
+        <div class="form-group">
+          <label for="slug">Slug</label>
+          <input type="text" class="form-control" id="slug" placeholder="Enter Slug - separated" [(ngModel)]="post.slug" name="slug">
+        </div>
+        <div class="form-group">
+          <label for="summary">Summary</label>
+          <textarea rows="3" class="form-control" id="summary" placeholder="Enter Summary" [(ngModel)]="post.summary" name="summary"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="datePublished">Publishing Date</label>
+          <input type="date" class="form-control" id="datePublished" placeholder="Enter Date" [(ngModel)]="post.datePublished" name="datePublished">
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="post.draft" name="draft">
+              Draft
+          </label>
+        </div>
+        <div class="form-group" *ngIf="addPost==true">
+          <label for="parent">Select Category</label>
+          <select required class="form-control" id="exampleSelect1" name="category" [ngModel]="post.category" (ngModelChange)="catChange($event)">
+            <option default>Select One</option>
+            <option *ngFor="let cat of categories | async" [ngValue]="cat">{{cat.name}}</option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="addPost==true && subcategories">
+          <label for="subcategory">Select Subcategory</label>
+          <select required multiple="" class="form-control" id="exampleSelect11" name="subcategory" [ngModel]="post.subcategories"
+            (ngModelChange)="subcatChange($event)">
+            <option *ngFor="let cat of subcategories | async" [ngValue]="cat">{{cat.name}}</option>
+          </select>
+        </div>
+        <!--<div class="row">
+          <div class="form-group col-md-6">
+            <label for="bodymb">Post Markdown Body</label>
+            <textarea rows="200" class="form-control" id="bodymd" placeholder="Enter markdown" [(ngModel)]="post.bodymd" name="bodymd"></textarea>
+          </div>
+          <markdown-to-html class="col-md-6" [data]="post.bodymd"></markdown-to-html>
+        </div>-->
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="bodymb">Post Body</label>
+            <ckeditor name="bodymd" [(ngModel)]="post.bodymd" [config]="{uiColor: '#ffffff', extraPlugins: 'mathjax', mathJaxLib: '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML'}" debounce="500">
+            </ckeditor>
+          </div>
+          <div class="col-md-6" [MathJax]="post.bodymd | sanitizeHtml"></div>
+        </div>
+        <div *ngIf="addPost==false">
+          <button type="submit" class="btn btn-primary" (click)="updatePost()">Update</button>
+          <button type="submit" class="btn btn-danger" (click)="deletePost()">Delete</button>
+        </div>
+        <div *ngIf="addPost==true">
+          <button type="submit" class="btn btn-primary" (click)="addNew()">Add</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

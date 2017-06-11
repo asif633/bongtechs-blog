@@ -1,0 +1,12 @@
+<div class="container" *ngIf="post">
+  <div class="card card-outline-primary mb-5">
+    <div class="card-header">
+      <h1>{{post.title}}</h1>
+    </div>
+    <div class="card-block">
+      <small class="text-muted">Published On: {{post.datePublished | date}}</small>
+      <!--<markdown-to-html [data]="post.bodymd"></markdown-to-html>-->
+      <div [MathJax]="post.bodymd | sanitizeHtml"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="card" *ngIf="category">
+  <h3 class="card-header">Subcategory Form</h3>
+  <div class="card-block">
+    <form>
+      <fieldset>
+        <div class="form-group">
+          <label for="name">Subcategory Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter Subcategory Name" [(ngModel)]="category.name" name="name">
+        </div>
+        <div class="form-group" *ngIf="addCategory==true">
+          <label for="parent">Select Category</label>
+          <select required class="form-control" id="exampleSelect1" name="parent" [ngModel]="category.parent" (ngModelChange)="getNew($event)">
+            <option default>Select One</option>
+            <option *ngFor="let cat of categories | async" [ngValue]="cat">{{cat.name}}</option>
+          </select>
+        </div>
+        <div *ngIf="addCategory==false">
+          <button type="submit" class="btn btn-primary" (click)="updateCategory()">Update</button>
+          <button type="submit" class="btn btn-danger" (click)="deleteCategory()">Delete</button>
+        </div>
+        <div *ngIf="addCategory==true">
+          <button type="submit" class="btn btn-primary" (click)="addNew()">Add</button>
+        </div>
+      </fieldset>
+    </form>
+    <p *ngIf="msg" class="text-success">{{msg}}</p>
+    <p *ngIf="msg1" class="text-danger">{{msg1}}</p>
+  </div>
+</div>

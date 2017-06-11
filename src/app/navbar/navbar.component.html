@@ -1,0 +1,22 @@
+<div class="navbar navbar-toggleable-sm fixed-top navbar-inverse bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+    aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <a routerLink="/" class="navbar-brand">Bongtechs Blog</a>
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item" *ngIf="(user|async)?.uid">
+          <a class="nav-link" routerLink="/manage-blogs" routerLinkActive="active">Manage Blogs</a>
+        </li>
+        <li class="nav-item" *ngIf="!(user|async)?.uid">
+          <a class="nav-link" routerLink="/signin" routerLinkActive="active">Sign In</a>
+        </li>
+        <li class="nav-item" *ngIf="(user|async)?.uid">
+          <a class="nav-link" href="#" (click)="signout()" routerLinkActive="active">Sign Out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

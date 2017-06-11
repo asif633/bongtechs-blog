@@ -1,0 +1,21 @@
+<table class="table table-striped table-hover table-bordered">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Post Title</th>
+      <th>Category</th>
+      <th>Select</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cat of posts | async; let i = index;">
+      <td>{{i+1}}</td>
+      <td>{{cat.title}}</td>
+      <td *ngIf="cat.subcategories"><div *ngFor="let sub of cat.subcategories">{{sub.name}}, </div></td>
+      <td>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="case" (click)="selectedPost(cat)">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" (click)="initializeNew()">Add New Post</button>
