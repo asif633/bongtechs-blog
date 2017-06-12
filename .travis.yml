@@ -16,7 +16,7 @@ before_script:
 
 script:
   - ng build --prod --base-href "https://asif633.github.io/bongtechs-blog/"
-  - angular-cli-ghpages --repo=https://GH_TOKEN@github.com/bongtechs-blog.git --name="Asif Iqubal" --email=asif633@gmail.com
+  - angular-cli-ghpages --repo=https://GH_TOKEN@github.com/asif633/bongtechs-blog.git --name="Asif Iqubal" --email=asif633@gmail.com
 
 notifications:
   email:
