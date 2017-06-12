@@ -1,0 +1,23 @@
+#.travis.yml
+
+language: node_js
+node_js:
+  - "6.9"
+
+branches:
+  only:
+    - master
+    - gh-pages
+
+before_script:
+  - npm install -g @angular/cli
+  - npm install -g angular-cli-ghpages
+
+script:
+  - ng build --prod --base-href "https://asif633.github.io/bongtechs-blog/"
+  - angular-cli-ghpages --repo=https://GH_TOKEN@github.com/bongtechs-blog.git --name="Asif Iqubal" --email=asif633@gmail.com
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change

@@ -18,7 +18,6 @@ constructor(private prodServ: SubcategoryService, private catServ: CategoryServi
   
   ngOnInit() {
     this.categories = this.catServ.getCategorys();
-    //this.subcategories = this.prodServ.getSubcategorys();
   }
 
   @Input() post: Post;
@@ -32,19 +31,23 @@ constructor(private prodServ: SubcategoryService, private catServ: CategoryServi
 
   updatePost() {
     this.postServ.updatePost(this.post)
-      .then(onresolev => this.msg = "Updated Successfully")
+      .then(onresolev => {this.msg = "Updated Successfully", this.post = null})
       .catch(onreject => this.msg1 = onreject.message);
   }
 
   deletePost() {
     this.postServ.deletePost(this.post)
-      .then(onresolev => this.msg = "Deleted Successfully")
+      .then(onresolev => {this.msg = "Deleted Successfully", this.post = null})
       .catch(onreject => this.msg1 = onreject.message);
   }
 
   addNew() {
-    this.postServ.addPost(this.post, this.post.category.$key, this.post.subcategories).then(onresolev => this.msg = "Added Successfully")
-      .catch(onreject => this.msg1 = onreject.message);;
+    this.postServ.addPost(this.post, this.post.category.$key, this.post.subcategories).then(onresolev => {
+      this.msg = "Added Successfully"; 
+      this.post = null;
+      this.categories = this.catServ.getCategorys();
+    })
+      .catch(onreject => this.msg1 = onreject.message);
   }
 
   subcatChange(event){

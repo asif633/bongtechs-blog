@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cat of posts | async | paginate: { itemsPerPage: 1, currentPage: p }; let i = index;">
+    <tr *ngFor="let cat of posts | async | paginate: { itemsPerPage: 5, currentPage: p }; let i = index;">
       <td>{{i+1}}</td>
       <td>{{cat.title}}</td>
       <td *ngIf="cat.subcategories">

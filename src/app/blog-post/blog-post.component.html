@@ -1,12 +1,17 @@
 <div class="container" *ngIf="post">
+  <div mathjax="$$ $$"></div>
   <div class="card card-outline-primary mb-5">
     <div class="card-header">
       <h1>{{post.title}}</h1>
     </div>
     <div class="card-block">
       <small class="text-muted">Published On: {{post.datePublished | date}}</small>
-      <!--<markdown-to-html [data]="post.bodymd"></markdown-to-html>-->
-      <div [MathJax]="post.bodymd"></div>
+      <div [ngSwitch]="post.doctype">
+        <!--<markdown-to-html [data]="post.bodymd" *ngSwitchCase="markdown"></markdown-to-html>-->
+        <div [innerHtml]="post.bodymd" *ngSwitchCase="html"></div>
+        <div [mathjax]="post.bodymd" *ngSwitchCase="equation"></div>
+        <markdown-to-html [data]="post.bodymd" [mathjax]="post.bodymd" *ngSwitchDefault></markdown-to-html>
+      </div>
     </div>
   </div>
 </div>

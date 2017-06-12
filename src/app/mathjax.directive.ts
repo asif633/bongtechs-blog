@@ -2,11 +2,11 @@ import {Directive, ElementRef, Input} from '@angular/core';
 declare var MathJax;
 
 @Directive({
-    selector: '[MathJax]'
+    selector: '[mathjax]'
 })
 export class MathJaxDirective {
     
-    @Input('MathJax') fractionString: string;
+    @Input('mathjax') fractionString: string;
 
     constructor(private el: ElementRef) {
     }

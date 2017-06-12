@@ -35,16 +35,13 @@ export class BlogPostsComponent implements OnInit {
   checked: string[] = [];
 
   updateChecked(option, event) {
-    console.log('event.target.value ' + event.target.value);
     var index = this.checked.indexOf(option);
     if (event.target.checked) {
-      console.log('add');
       if (index === -1) {
         this.checked.push(option);
         this.posts = this.postServ.getSubcategoryPosts(this.checked, this.p);
       }
     } else {
-      console.log('remove');
       if (index !== -1) {
         this.checked.splice(index, 1);
         if(this.checked.length == 0){
@@ -56,7 +53,6 @@ export class BlogPostsComponent implements OnInit {
       }
     }
     //this.checked[option]=event.target.value; // or `event.target.value` not sure what this event looks like
-    console.log(this.checked);
   }
 
   changePage(event) {

@@ -40,44 +40,44 @@
           </select>
         </div>
         <label class="custom-control custom-radio">
-          <input id="radio1" name="doctype" value="html" type="radio" [(ngModel)]="doctype" class="custom-control-input">
+          <input id="radio1" name="doctype" value="html" type="radio" [(ngModel)]="post.doctype" class="custom-control-input">
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">HTML Body</span>
         </label>
         <label class="custom-control custom-radio">
-          <input id="radio2" name="doctype" type="radio" value="equation" [(ngModel)]="doctype" class="custom-control-input">
+          <input id="radio2" name="doctype" type="radio" value="equation" [(ngModel)]="post.doctype" class="custom-control-input">
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">HTML Body With Equations</span>
         </label>
         <label class="custom-control custom-radio">
-          <input id="radio2" name="doctype" type="radio" value="markdown" [(ngModel)]="doctype" class="custom-control-input">
+          <input id="radio2" name="doctype" type="radio" value="markdown" [(ngModel)]="post.doctype" class="custom-control-input">
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">Markdown Body</span>
         </label>
-        <div class="row" *ngIf="doctype == 'markdown'">
+        <div class="row" *ngIf="post.doctype == 'markdown'">
           <div class="form-group col-md-6">
             <label for="bodymb">Post Markdown Body</label>
-            <textarea rows="200" class="form-control" id="bodymd" placeholder="Enter markdown" [(ngModel)]="post.bodymd" name="bodymd"></textarea>
+            <textarea rows="50" class="form-control" id="bodymd" placeholder="Enter markdown" [(ngModel)]="post.bodymd" name="bodymd"></textarea>
           </div>
-          <markdown-to-html class="col-md-6" [data]="post.bodymd"></markdown-to-html>
+          <div mathjax="$$ $$"></div>
+          <markdown-to-html class="col-md-6" [data]="post.bodymd" [mathjax]="post.md"></markdown-to-html>
         </div>
-        <div class="row" *ngIf="doctype == 'equation'">
+        <div class="row" *ngIf="post.doctype == 'equation'">
           <div class="form-group col-md-6">
             <label for="bodymb">Post Body</label>
             <ckeditor name="bodymd" [(ngModel)]="post.bodymd" [config]="{uiColor: '#ffffff', extraPlugins: 'mathjax', mathJaxLib: '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML'}"
               debounce="500">
             </ckeditor>
           </div>
-          <div class="col-md-6" [MathJax]="post.bodymd"></div>
+          <div class="col-md-6" [mathjax]="post.bodymd"></div>
         </div>
-        <div class="row" *ngIf="doctype == 'html'">
+        <div class="row" *ngIf="post.doctype == 'html'">
           <div class="form-group col-md-6">
             <label for="bodymb">Post Body</label>
-            <ckeditor name="bodymd" [(ngModel)]="post.bodymd" [config]="{uiColor: '#ffffff'}"
-              debounce="500">
+            <ckeditor name="bodymd" [(ngModel)]="post.bodymd" [config]="{uiColor: '#ffffff'}" debounce="500">
             </ckeditor>
           </div>
-          <div class="col-md-6" [MathJax]="post.bodymd"></div>
+          <div class="col-md-6" [innerHtml]="post.bodymd"></div>
         </div>
         <div *ngIf="addPost==false">
           <button type="submit" class="btn btn-primary" (click)="updatePost()">Update</button>
@@ -90,3 +90,5 @@
     </form>
   </div>
 </div>
+<p *ngIf="msg" class="text-success">{{msg}}</p>
+<p *ngIf="msg1" class="text-danger">{{msg1}}</p>

@@ -9,6 +9,7 @@ export interface Post{
     bodymd: string;
     datePublished: string;
     draft: boolean;
+    doctype?: string;
     subcategories?: Subcategory[];
     category?: Category;
 }

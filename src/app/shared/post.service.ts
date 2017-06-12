@@ -15,7 +15,7 @@ export class PostService {
     private uid: string;
 
     initializeNew(): Post {
-        return { title: '', slug: '', summary: '', bodymd: '', datePublished: '', draft: true };
+        return { title: '', slug: '', summary: '', bodymd: '', datePublished: '', draft: true, doctype: 'markdown' };
     }
 
     constructor(private afAuth: AngularFireAuth, private afd: AngularFireDatabase) {
@@ -44,14 +44,16 @@ export class PostService {
 
     updatePost(cas: Post) {
         if (this.uid != undefined && this.uid != null) {
-            return this.afd.object('blog-posts/' + cas.$key).update({ title: cas.title, slug: cas.slug, summary: cas.summary, bodymd: cas.bodymd, datePublished: cas.datePublished, draft: cas.draft, subcategories: cas.subcategories, category: cas.category });
+            return this.afd.object('blog-posts/' + cas.$key).update({ title: cas.title, slug: cas.slug, summary: cas.summary, bodymd: cas.bodymd, datePublished: cas.datePublished, draft: cas.draft, subcategories: cas.subcategories, category: cas.category, doctype: cas.doctype });
         }
     }
 
     getPosts(pageNum: number): Observable<Post[]> {
         return this.afd.list('blog-posts', {
             query: {
-                limitToFirst: (pageNum * 10)
+                limitToFirst: (pageNum * 10),
+                orderByChild: 'draft',
+                equalTo: false
                 }
         });
     }
