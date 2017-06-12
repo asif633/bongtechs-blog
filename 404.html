@@ -8,16 +8,31 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link href="styles.b41ed3038b8c9625bb3b.bundle.css" rel="stylesheet"/></head>
+<link href="styles.680eb26aa5283e3ed54c.bundle.css" rel="stylesheet"/></head>
 
 <body>
   <app-root>Loading...</app-root>
   <script src="https://cdn.ckeditor.com/4.7.0/full-all/ckeditor.js"></script>
-  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
   </script>
     <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    MathJax.Hub.Config({ 
+        TeX: {extensions: ["AMSmath.js", "AMSsymbols.js"]},     
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        showProcessingMessages : false,
+        messageStyle : "none" ,    
+        showMathMenu: false ,
+        tex2jax: {
+            processEnvironments: true,
+            inlineMath: [ ['$','$'], ["\(","\)"] ],
+            displayMath: [ ['$$','$$'], ["\[","\]"] ],
+            preview : "none",
+            processEscapes: true
+        },
+        "HTML-CSS": { linebreaks: { automatic:true, width: "latex-container"} }
+    });
   </script>
-<script type="text/javascript" src="inline.b6d083d8aaa859485d05.bundle.js"></script><script type="text/javascript" src="polyfills.ebf40994b5ce635d7a0e.bundle.js"></script><script type="text/javascript" src="scripts.1637d922153005126fcc.bundle.js"></script><script type="text/javascript" src="vendor.3e18fceb4f9127884b9b.bundle.js"></script><script type="text/javascript" src="main.5a099250d0d904f69a1d.bundle.js"></script></body>
+<script type="text/javascript" src="inline.64f844033d3769146544.bundle.js"></script><script type="text/javascript" src="polyfills.d196a2b4a6e045101b9e.bundle.js"></script><script type="text/javascript" src="scripts.bce1c5996251e49d37e2.bundle.js"></script><script type="text/javascript" src="vendor.d12dcf6ff8f7f85a0c46.bundle.js"></script><script type="text/javascript" src="main.6da492cd5202aebb564e.bundle.js"></script></body>
 
 </html>
