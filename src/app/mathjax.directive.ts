@@ -12,7 +12,6 @@ export class MathJaxDirective {
     }
     
     ngOnChanges() {
-      console.log('>> ngOnChanges');
        this.el.nativeElement.style.backgroundColor = '#ffffff';
        this.el.nativeElement.innerHTML = this.fractionString;
        MathJax.Hub.Queue(["Typeset",MathJax.Hub, this.el.nativeElement]);

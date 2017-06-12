@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Post } from '../shared/post.model';
 import { PostService } from '../shared/post.service';
@@ -9,7 +9,7 @@ import * as firebase from 'firebase/app';
   templateUrl: './post-table.component.html',
   styleUrls: ['./post-table.component.css']
 })
-export class PostTableComponent implements OnInit {
+export class PostTableComponent implements OnInit, OnChanges {
 
   posts: Observable<Post[]>;
 
@@ -19,6 +19,10 @@ export class PostTableComponent implements OnInit {
 
   ngOnInit() {
     this.p = 1;
+    this.posts = this.prodServ.getUserPosts(this.p);
+  }
+
+  ngOnChanges(){
     this.posts = this.prodServ.getUserPosts(this.p);
   }
 

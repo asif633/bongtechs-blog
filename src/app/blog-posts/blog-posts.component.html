@@ -7,9 +7,9 @@
           <h6>Select Category</h6>
           <div class="form-group">
             <select required class="form-control" id="exampleSelect1" name="category" [ngModel]="category" (ngModelChange)="catChange($event)">
-            <option default>Select One</option>
-            <option *ngFor="let cat of categories | async" [ngValue]="cat">{{cat.name}}</option>
-          </select>
+              <option default>Select One</option>
+              <option *ngFor="let category of categories | async" [ngValue]="category" >{{category.name}}</option>
+            </select>
           </div>
           <div *ngIf="options">
             <h6 class="mb-3"> Select to Filter </h6>
@@ -35,9 +35,10 @@
           <div class="card mb-4" *ngFor="let post of posts | async | paginate: { itemsPerPage: 5, currentPage: p } ">
             <div class="card-block">
               <h3>{{post.title}}</h3>
-              <small class="text-muted">{{post.datePublished | date}}</small>
+              <p><img src="{{post.writer.photoURL}}" class="image rounded-circle" width="30" height="30">
+                <small class="text-muted">{{post.writer.email}} published on: {{post.datePublished | date}}</small></p>
               <p>{{post.summary}}</p>
-              <button class="btn btn-warning float-right" (click)="readPost(post.slug)">Read More</button>
+              <a class="btn btn-warning float-right" [routerLink]="['posts', post.slug]" target="_blank">Read More</a>
             </div>
           </div>
         </div>

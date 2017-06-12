@@ -39,8 +39,4 @@ export class LoginService {
         return this.afdb.list('users').$ref.ref.child(user.uid).set(user);
     }
 
-    getUserData(uid: string): Observable<User>{
-        return this.afdb.object('users/'+ uid);
-    }
-
 }

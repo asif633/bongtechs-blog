@@ -1,5 +1,6 @@
 import { Subcategory } from './subcategory.model';
 import { Category } from './category.model';
+import { User } from './user.model';
 
 export interface Post{
     $key?: string;
@@ -12,4 +13,5 @@ export interface Post{
     doctype?: string;
     subcategories?: Subcategory[];
     category?: Category;
+    writer?: User;
 }

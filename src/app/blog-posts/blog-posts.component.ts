@@ -18,9 +18,8 @@ export class BlogPostsComponent implements OnInit {
   constructor(private postServ: PostService, private router: Router, private subcat: SubcategoryService, private catServ: CategoryService) { }
 
   ngOnInit() {
-    this.posts = this.postServ.getPosts(this.p);
     this.categories = this.catServ.getCategorys();
-    //this.subcat.getSubcategorys().subscribe(subcats => this.options = subcats);
+    this.posts = this.postServ.getPosts(this.p);
   }
 
   posts: Observable<Post[]>;
@@ -30,7 +29,7 @@ export class BlogPostsComponent implements OnInit {
     this.router.navigate(['/posts', slug]);
   }
 
-  options: Subcategory[];
+  options: Subcategory[] = [];
 
   checked: string[] = [];
 
@@ -44,10 +43,10 @@ export class BlogPostsComponent implements OnInit {
     } else {
       if (index !== -1) {
         this.checked.splice(index, 1);
-        if(this.checked.length == 0){
+        if (this.checked.length == 0) {
           this.posts = this.postServ.getCategoryPosts(this.category.$key, this.p);
         }
-        else{
+        else {
           this.posts = this.postServ.getSubcategoryPosts(this.checked, this.p);
         }
       }
@@ -57,15 +56,7 @@ export class BlogPostsComponent implements OnInit {
 
   changePage(event) {
     this.p = event;
-    if (this.checked.length == 0 && this.category!= undefined ) {
-      this.posts = this.postServ.getCategoryPosts(this.category.$key, this.p);
-    }
-    else if(this.checked.length != 0){
-      this.posts = this.postServ.getSubcategoryPosts(this.checked, this.p);
-    }
-    else{
-      this.posts = this.postServ.getPosts(this.p);
-    }
+    this.postsQuery();
   }
 
   categories: Observable<Category[]>;
@@ -76,6 +67,18 @@ export class BlogPostsComponent implements OnInit {
     console.log('ca ' + this.category.name);
     this.posts = this.postServ.getCategoryPosts(this.category.$key, this.p);
     this.subcat.getSubcatsOfCat(this.category.$key).subscribe(res => this.options = res);
+  }
+
+  postsQuery() {
+    if (this.checked.length == 0 && this.category != undefined) {
+      this.posts = this.postServ.getCategoryPosts(this.category.$key, this.p);
+    }
+    else if (this.checked.length != 0) {
+      this.posts = this.postServ.getSubcategoryPosts(this.checked, this.p);
+    }
+    else {
+      this.posts = this.postServ.getPosts(this.p);
+    }
   }
 
 }

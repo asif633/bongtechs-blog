@@ -1,15 +1,19 @@
 <div class="container" *ngIf="post">
+  <div class="btn btn-warning" (click)="back()">Back</div>
   <div mathjax="$$ $$"></div>
   <div class="card card-outline-primary mb-5">
     <div class="card-header">
       <h1>{{post.title}}</h1>
     </div>
     <div class="card-block">
-      <small class="text-muted">Published On: {{post.datePublished | date}}</small>
+      <p>
+        <img src="{{post.writer.photoURL}}" class="image rounded-circle" width="50" height="50" >        
+        <small class="text-muted">{{post.writer.displayName}}</small><small class="text-muted"> : {{post.datePublished | date}}</small>
+      </p>
       <div [ngSwitch]="post.doctype">
         <!--<markdown-to-html [data]="post.bodymd" *ngSwitchCase="markdown"></markdown-to-html>-->
-        <div [innerHtml]="post.bodymd" *ngSwitchCase="html"></div>
-        <div [mathjax]="post.bodymd" *ngSwitchCase="equation"></div>
+        <div [innerHtml]="post.bodymd | sanitizeHtml" *ngSwitchCase="html"></div>
+        <div [mathjax]="post.bodymd | sanitizeHtml" *ngSwitchCase="equation"></div>
         <markdown-to-html [data]="post.bodymd" [mathjax]="post.bodymd" *ngSwitchDefault></markdown-to-html>
       </div>
     </div>

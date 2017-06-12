@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../shared/post.model';
 import { PostService } from '../shared/post.service';
 import { Observable } from 'rxjs/Rx';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Rx';
 })
 export class BlogPostComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute, private postServ:PostService) { }
+  constructor(private route:ActivatedRoute, private postServ:PostService, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(param => 
@@ -20,5 +20,9 @@ export class BlogPostComponent implements OnInit {
   }
 
   post: Post;
+
+  back(){
+    this.router.navigate(['../']);
+  }
 
 }
