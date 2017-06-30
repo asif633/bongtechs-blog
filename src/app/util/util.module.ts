@@ -5,11 +5,13 @@ import { BlogPostPipe } from '../blog-post.pipe';
 import { MathJaxDirective } from '../mathjax.directive';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { LoginService } from '../shared/login.service';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   imports: [
     CommonModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CKEditorModule
   ],
   declarations: [
     SanitizeHtmlPipe,
@@ -22,6 +24,7 @@ import { LoginService } from '../shared/login.service';
     BlogPostPipe,
     MathJaxDirective,
     NgxPaginationModule,
+    CKEditorModule
   ]
 })
 export class UtilModule { }

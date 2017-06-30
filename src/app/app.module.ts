@@ -21,6 +21,10 @@ import { SubcategoryService } from './shared/subcategory.service';
 import { CategoryService } from './shared/category.service';
 import { UtilModule } from './util/util.module';
 import { AuthGuard } from './shared/authguard.service';
+import { ManageAncientHistoryComponent } from './manage-ancient-history/manage-ancient-history.component';
+import { AncientHistoryTableComponent } from './ancient-history-table/ancient-history-table.component';
+import { AncientHistoryFormComponent } from './ancient-history-form/ancient-history-form.component';
+import { AncientHistoryService } from './shared/ancient-history.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,9 @@ import { AuthGuard } from './shared/authguard.service';
     SignInComponent,
     BlogPostsComponent,
     BlogPostComponent,
+    ManageAncientHistoryComponent,
+    AncientHistoryTableComponent,
+    AncientHistoryFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,7 @@ import { AuthGuard } from './shared/authguard.service';
     MarkdownToHtmlModule.forRoot(),
     UtilModule
   ],
-  providers: [ AuthGuard, PostService, SubcategoryService, CategoryService ],
+  providers: [ AuthGuard, PostService, SubcategoryService, CategoryService, AncientHistoryService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

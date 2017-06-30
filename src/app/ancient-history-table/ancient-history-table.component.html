@@ -1,0 +1,26 @@
+<table class="table table-striped table-hover table-bordered">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Select</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts | async | paginate: { itemsPerPage: 5, currentPage: p }; let i = index;">
+      <td>{{i+1}}</td>
+      <td>{{post.title}}</td>
+      <td>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="post" (click)="selectedPost(post)">
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td class="text-right" colspan="4">
+        <pagination-controls directionLinks="true" autoHide="true" previousLabel="Previous" nextLabel="Next" (pageChange)="changePage($event)"></pagination-controls>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+<button class="btn btn-primary" (click)="initializeNew()">Add New</button>

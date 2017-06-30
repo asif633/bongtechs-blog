@@ -1,0 +1,11 @@
+<div class="container">
+  <h4>Manage Ancient History Posts</h4>
+  <div class="row">
+    <div class="col-md-12 mb-5">
+      <app-ancient-history-table (selectPost)="getPost($event)" (add)="getAdd($event)"></app-ancient-history-table>
+    </div>
+    <div class="col-md-12 mb-5">
+      <app-ancient-history-form [addPost]="add" [post]="selectedPost"></app-ancient-history-form>
+    </div>
+  </div>
+</div>
