@@ -15,6 +15,8 @@ constructor(private ancientServ: AncientHistoryService) { }
     
   }
 
+  contentType: string;
+
   ngOnChanges(){
     this.msg = "";
     this.msg1 = "";
@@ -27,19 +29,19 @@ constructor(private ancientServ: AncientHistoryService) { }
   msg1: string;
 
   updatePost() {
-    this.ancientServ.updateAncientHistory(this.post)
+    this.ancientServ.updateAncientHistory(this.post, this.contentType)
       .then(onresolev => {this.msg = "Updated Successfully", this.post = null})
       .catch(onreject => this.msg1 = onreject.message);
   }
 
   deletePost() {
-    this.ancientServ.deleteAncientHistory(this.post)
+    this.ancientServ.deleteAncientHistory(this.post, this.contentType)
       .then(onresolev => {this.msg = "Deleted Successfully", this.post = null})
       .catch(onreject => this.msg1 = onreject.message);
   }
 
   addNew() {
-    this.ancientServ.addAncientHistory(this.post).then(onresolev => {
+    this.ancientServ.addAncientHistory(this.post, this.contentType).then(onresolev => {
       this.msg = "Added Successfully"; 
       this.post = null;
     })

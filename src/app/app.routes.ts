@@ -13,7 +13,7 @@ const routes: Routes = [
         {path: 'posts/:slug', component: BlogPostComponent},
         {path: 'manage-blogs', loadChildren: './manage-blogs/blog.module#BlogModule', canLoad: [AuthGuard]},
         {path: 'signin', component: SignInComponent},
-        {path: 'ancient-history', component: ManageAncientHistoryComponent, canActivate:[AuthGuard]}
+        {path: 'wbpsc', component: ManageAncientHistoryComponent, canActivate:[AuthGuard]}
     ]},
     { path: '**', component: PageNotFoundComponent }
 ];

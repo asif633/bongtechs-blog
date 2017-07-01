@@ -4,6 +4,42 @@
     <form>
       <fieldset>
         <div class="form-group">
+          <label>Choose the content type</label>
+          <select class="form-control" #contentTypeElement #contentTypeControl="ngModel" [(ngModel)]="contentType" name="contentType" required>
+            <option value="">Please select</option>
+            <optgroup label="ভারতের ইতিহাস">
+              <option value="prachin-itihas">প্রাচীন ইতিহাস</option>
+              <option value="modhyo-itihas">মধ্যযুগীয় ইতিহাস</option>
+              <option value="adhunik-itihas">আধুনিক ইতিহাস</option>
+              <option value="shadhinota-itihas">স্বাধীনতা সংগ্রাম</option>
+            </optgroup>
+            <optgroup label="ভূগোল">
+              <option value="bharoter-bhugol">ভারতের ভূগোল</option>
+              <option value="prakritik-bhugol">প্রাকৃতিক ভূগোল</option>
+              <option value="ancholik-bhugol">আঞ্চলিক ভূগোল</option>
+              <option value="wb-ancholik-bhugol">পশ্চিম বঙ্গ আঞ্চলিক ভূগোল</option>
+            </optgroup>
+            <optgroup label="বিজ্ঞান">
+              <option value="rosayon-biggan">রসায়ন বিজ্ঞান</option>
+              <option value="jib-biggan">জীব বিজ্ঞান</option>
+              <option value="bhouto-biggan">ভৌত বিজ্ঞান</option>
+            </optgroup>
+            <optgroup label="English">
+              <option value="preposition-english">Preposition English</option>
+              <option value="synonyms-english">Synonyms English</option>
+              <option value="idioms-english">Idioms English</option>
+              <option value="group-verbs-english">Group Verbs English</option>
+              <option value="antonyms-english">Antonyms English</option>
+            </optgroup>
+            <option value="traditional-gk">Traditional GK</option>
+            <option value="shongbidhan">সংবিধান</option>
+            <option value="prakritik-ghotona">প্রাত্যহিক ঘটনা</option>
+            <option value="orthoniti">অর্থনীতি</option>
+            <option value="mental-ability">Mental Ability</option>
+            <option value="important-dates">গুরুত্বপূর্ণ তারিখ</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="title">Title</label>
           <input type="text" class="form-control" id="title" placeholder="Enter Title" [(ngModel)]="post.title" name="title">
         </div>

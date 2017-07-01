@@ -15,14 +15,16 @@ export class AncientHistoryTableComponent implements OnInit, OnChanges {
   constructor(private prodServ: AncientHistoryService) { }
   
   p: number;
+  contentType: string;
 
   ngOnInit() {
     this.p = 1;
-    this.posts = this.prodServ.getAncientHistorys();
+    this.contentType = "adhunik-itihas";
+    this.posts = this.prodServ.getAncientHistorys(this.contentType);
   }
 
   ngOnChanges(){
-    this.posts = this.prodServ.getAncientHistorys();
+    this.posts = this.prodServ.getAncientHistorys(this.contentType);
   }
 
   @Output() selectPost = new EventEmitter<AncientHistory>();
@@ -36,6 +38,10 @@ export class AncientHistoryTableComponent implements OnInit, OnChanges {
   initializeNew() {
     this.selectPost.emit(this.prodServ.initializeNew());
     this.add.emit(true);
+  }
+
+  changeContentType(event){
+    this.posts = this.prodServ.getAncientHistorys(event);
   }
 
   changePage(event) {

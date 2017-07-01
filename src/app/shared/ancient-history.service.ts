@@ -22,29 +22,29 @@ export class AncientHistoryService {
         );
     }
 
-    addAncientHistory(cat: AncientHistory) {
+    addAncientHistory(cat: AncientHistory, contentType: string) {
         if (this.uid != undefined && this.uid != null) {
-            return this.afd.list('ancient-history').push(cat);
+            return this.afd.list(contentType).push(cat);
         }
     }
 
-    updateAncientHistory(cas: AncientHistory) {
+    updateAncientHistory(cas: AncientHistory, contentType: string) {
         if (this.uid != undefined && this.uid != null) {
-           return this.afd.object('ancient-history/' + cas.$key).update({ title: cas.title, excerpt: cas.excerpt, bodytext: cas.bodytext, publishingdate: cas.publishingdate, draft: cas.draft });
+           return this.afd.object(contentType+'/' + cas.$key).update({ title: cas.title, excerpt: cas.excerpt, bodytext: cas.bodytext, publishingdate: cas.publishingdate, draft: cas.draft });
         }
     }
 
-    getAncientHistorys(): Observable<AncientHistory[]> {
-        return this.afd.list('ancient-history');
+    getAncientHistorys(contentType: string): Observable<AncientHistory[]> {
+        return this.afd.list(contentType);
     }
 
-    getAncientHistory(key: string): Observable<AncientHistory>{
-        return this.afd.object('ancient-history/'+ key);
+    getAncientHistory(key: string, contentType: string): Observable<AncientHistory>{
+        return this.afd.object(contentType+'/'+ key);
     }
 
-    deleteAncientHistory(cas: AncientHistory) {
+    deleteAncientHistory(cas: AncientHistory, contentType: string) {
         if (this.uid != undefined && this.uid != null) {
-            return this.afd.list('ancient-history').remove(cas.$key);
+            return this.afd.list(contentType).remove(cas.$key);
         }
     }
 
