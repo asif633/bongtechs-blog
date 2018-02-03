@@ -20,21 +20,35 @@ export class SignInComponent {
   email: string;
   password: string;
 
-  signInUsingGmail() {
-    this.authServ.login()
-      .then(resolve => this.user.subscribe(user => {
-        if (user != undefined && user != null) {
-            console.log('url'+ this.authServ.redirecturl );
-            let redirect = this.authServ.redirecturl ? this.authServ.redirecturl : '/manage-blogs';
-            if(!this.authServ.checkUserExists(user.uid)){
-              this.authServ.createUser({uid: user.uid, displayName: user.displayName, email: user.email, photoURL: user.photoURL}).then(resolve => this.router.navigate([redirect]));
-            }
-            else{
-              this.router.navigate([redirect]);
-            }
-        }
-      }))
+  signin() {
+    this.authServ.loginWithEmail({ email: this.email, password: this.password }).then(resolve => {
+      if (resolve) {
+        this.router.navigate(['manage-blogs']);
+      }
+    })
+      // .then(resolve => this.user.subscribe(user => {
+      //   if (user ! = undefined && user != null) {
+      //     this.router.navigate(['manage-blogs']);
+      //   }
+      // }))
       .catch(error => this.msg = error.message);
   }
+
+  // signInUsingGmail() {
+  //   this.authServ.login()
+  //     .then(resolve => this.user.subscribe(user => {
+  //       if (user ! = undefined && user != null) {
+  //           console.log('url' + this.authServ.redirecturl );
+  //           let redirect = this.authServ.redirecturl ? this.authServ.redirecturl : '/manage-blogs';
+  //           if(!this.authServ.checkUserExists(user.uid)){
+  //             this.authServ.createUser({uid: user.uid, displayName: user.displayName, email: user.email, photoURL: user.photoURL}).then(resolve => this.router.navigate([redirect]));
+  //           }
+  //           else{
+  //             this.router.navigate([redirect]);
+  //           }
+  //       }
+  //     }))
+  //     .catch(error => this.msg = error.message);
+  // }
 
 }

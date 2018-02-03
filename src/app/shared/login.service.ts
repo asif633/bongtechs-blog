@@ -20,6 +20,10 @@ export class LoginService {
         return this.user;
     }
 
+    loginWithEmail({email, password}) {
+        return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    }
+
     login() {
         return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     }

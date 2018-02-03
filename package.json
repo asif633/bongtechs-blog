@@ -27,9 +27,12 @@
     "core-js": "^2.4.1",
     "firebase": "^4.1.1",
     "font-awesome": "^4.7.0",
+    "marked": "^0.3.12",
     "ng2-ckeditor": "^1.1.8",
-    "ng2-markdown-to-html": "^1.2.1",
+    "ngx-markdown": "^1.5.0",
     "ngx-pagination": "^3.0.0",
+    "prismjs": "^1.10.0",
+    "promise-polyfill": "7.0.2",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },

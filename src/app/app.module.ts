@@ -13,7 +13,7 @@ import { environment } from '../environments/environment.prod';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
+import { MarkdownModule } from 'ngx-markdown';
 import { BlogPostsComponent } from './blog-posts/blog-posts.component';
 import { BlogPostComponent } from './blog-post/blog-post.component';
 import { PostService } from './shared/post.service';
@@ -47,7 +47,7 @@ import { AncientHistoryService } from './shared/ancient-history.service';
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     BrowserAnimationsModule,
-    MarkdownToHtmlModule.forRoot(),
+    MarkdownModule.forRoot(),
     UtilModule
   ],
   providers: [ AuthGuard, PostService, SubcategoryService, CategoryService, AncientHistoryService ],

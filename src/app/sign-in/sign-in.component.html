@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row justify-content-md-center align-items-center">
     <div class="col-md-5">
       <div class="card card-outline-primary text-xs-center">
@@ -8,5 +8,31 @@
         </div>
       </div>
     </div>
+  </div>
+</div> -->
+
+<div class="card card-outline-primary text-xs-center">
+  <h3 class="card-header bg-primary text-white">Sign In</h3>
+  <div class="card-block">
+    <form #userForm="ngForm">
+      <fieldset>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input class="form-control" #emailElement #emailControl="ngModel" type="text" placeholder="Email" [(ngModel)]="email" name="email"
+            maxlength="60" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+          <span [hidden]="emailControl.pristine || !emailControl.errors?.required" class="text-danger">Email is required!</span>
+          <span [hidden]="emailControl.pristine || !emailControl.errors?.pattern" class="text-danger">That is not a valid email!</span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input name="password" #passwordElement #passwordControl="ngModel" [(ngModel)]="password" type="password" class="form-control"
+            id="exampleInputPassword1" placeholder="Password" required minlength="6" maxlength="30">
+          <span [hidden]="passwordControl.pristine || !passwordControl.errors?.required" class="text-danger">Password is required!</span>
+          <span [hidden]="passwordControl.pristine || passwordControl.errors?.minlength<6" class="text-danger">Password should be atleast 6 characters!</span>
+        </div>
+        <button [disabled]="!userForm.form.valid" type="submit" class="btn btn-primary" (click)="signin()">Sign In</button>
+        <p *ngIf="msg" class="text-danger mt-1">{{msg}}</p>
+      </fieldset>
+    </form>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { CategoryFormComponent } from '../category-form/category-form.component';
 import { CategoryTableComponent } from '../category-table/category-table.component';
@@ -21,7 +21,7 @@ import { UtilModule } from '../util/util.module';
     CommonModule,
     BlogRoutingModule,
     FormsModule,
-    MarkdownToHtmlModule.forChild(),
+    MarkdownModule.forChild(),
     UtilModule
   ],
   declarations: [

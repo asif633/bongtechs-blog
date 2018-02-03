@@ -60,7 +60,7 @@
             <textarea rows="50" class="form-control" id="bodymd" placeholder="Enter markdown" [(ngModel)]="post.bodymd" name="bodymd"></textarea>
           </div>
           <div mathjax="$$ $$"></div>
-          <markdown-to-html class="col-md-6" [data]="post.bodymd" [mathjax]="post.md"></markdown-to-html>
+          <div markdown class="col-md-6" [data]="post.bodymd" [mathjax]="post.md"></div>
         </div>
         <div class="row" *ngIf="post.doctype == 'equation'">
           <div class="form-group col-md-6">
